@@ -102,22 +102,23 @@
 
 
     <script>
-        let res = new XMLHttpRequest()
-        res.open("get", "https://dummyjson.com/carts")
-        res.send()
-        res.onreadystatechange = () => {
-            if (res.readyState == 4) {
-                if (res.status > 199 && res.status < 300) {
-                    let data = JSON.parse(res.responseText)
-                    // console.log(data.carts[0]);
-                    todo(data)
-                } else {
-                    alert("something wrong")
-                }
-            }
-        }
-        function todo(data) {
-            for (item of data.carts) {
+        // let res = new XMLHttpRequest()
+        // res.open("get", "https://dummyjson.com/carts")
+        // res.send()
+        // res.onreadystatechange = () => {
+        //     if (res.readyState == 4) {
+        //         if (res.status > 199 && res.status < 300) {
+        //             let data = JSON.parse(res.responseText)
+        //             // console.log(data.carts[0]);
+        //             todo(data)
+        //         } else {
+        //             alert("something wrong")
+        //         }
+        //     }
+        // }
+        fetch('https://dummyjson.com/carts').then((data)=>{ return data.json()}).then((data2)=>{todo(data2)})
+        function todo(data2) {
+            for (item of data2.carts) {
                 console.log(item);
                 htmlbody = `<div class="shadow m-5" >
                     <h2 class="bg-danger text-light text-center">CART NO:${item.id}</h2>
